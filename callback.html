@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authentication Callback</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/auth.css">
+    <style>
+        .callback-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+        }
+        
+        .spinner {
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border-left-color: var(--secondary-color);
+            animation: spin 1s linear infinite;
+            margin-bottom: 20px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="callback-container">
+        <div class="spinner"></div>
+        <h2>Processing Authentication</h2>
+        <p>Please wait while we complete your authentication...</p>
+    </div>
+
+    <!-- Auth0 SDK -->
+    <script src="https://cdn.auth0.com/js/auth0-spa-js/2.0/auth0-spa-js.production.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/theme.js"></script>
+    
+    <script>
+        // This page is the callback page for Auth0 authentication
+        // It will automatically process the authentication response and redirect back to the main page
+        document.addEventListener('DOMContentLoaded', async function() {
+            try {
+                // Store that we're processing authentication
+                localStorage.setItem('auth_processing', 'true');
+                // Wait for Auth0 to initialize
+                setTimeout(async function() {
+                    if (window.auth0Client) {
+                        // Handle the callback
+                        await window.auth0Client.handleRedirectCallback();
+                        // Redirect back to the main page
+                        window.location.href = window.location.origin;
+                    } else {
+                        // If auth0Client is not available, redirect to home page
+                        window.location.href = window.location.origin;
+                    }
+                }, 1000);
+                // Dispatch an event that authentication state has changed
+                window.dispatchEvent(new Event('auth-state-changed'));
+            } catch (error) {
+                console.error('Error during callback processing:', error);
+                localStorage.removeItem('auth_processing');
+                // Redirect to home page even if there's an error
+                window.location.href = window.location.origin;
+            } finally {
+                // Clear the processing flag when done
+                setTimeout(() => {
+                    localStorage.removeItem('auth_processing');
+                }, 1000);
+            }
+        });
+        
+        // Handle token refresh errors
+        window.addEventListener('auth0.token.refresh.error', function() {
+            console.log('Token refresh failed, redirecting to login');
+            // Clear any stored authentication data
+            localStorage.removeItem('user');
+            localStorage.removeItem('userRoles');
+            localStorage.removeItem('userPermissions');
+            // Redirect to login
+            window.location.href = window.location.origin;
+        });
+    </script>
+</body>
+</html>

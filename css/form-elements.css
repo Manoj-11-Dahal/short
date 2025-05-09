@@ -1,0 +1,176 @@
+/* Form Elements Styling */
+
+/* Input fields */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="search"],
+input[type="tel"],
+input[type="url"],
+input[type="number"],
+textarea,
+select {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid var(--input-border);
+    border-radius: 5px;
+    background-color: var(--input-bg);
+    color: var(--input-text);
+    font-family: inherit;
+    font-size: 1rem;
+    transition: var(--transition);
+    margin-bottom: 15px;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 0 3px rgba(0, 159, 253, 0.2);
+}
+
+/* Custom checkbox and radio styles */
+input[type="checkbox"],
+input[type="radio"] {
+    accent-color: var(--secondary-color);
+}
+
+/* Form labels */
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+/* Form buttons */
+.form-btn {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: var(--transition);
+    display: inline-block;
+    text-align: center;
+}
+
+.form-btn:hover {
+    background-color: var(--button-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.form-btn.secondary {
+    background-color: transparent;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+}
+
+.form-btn.secondary:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+/* Form group */
+.form-group {
+    margin-bottom: 20px;
+}
+
+/* Form validation */
+input:invalid,
+textarea:invalid,
+select:invalid {
+    border-color: #ff3860;
+}
+
+.error-message {
+    color: #ff3860;
+    font-size: 0.85rem;
+    margin-top: -10px;
+    margin-bottom: 15px;
+}
+
+/* Form success message */
+.success-message {
+    color: #23d160;
+    font-size: 0.85rem;
+    margin-bottom: 15px;
+    padding: 10px;
+    background-color: rgba(35, 209, 96, 0.1);
+    border-radius: 5px;
+    border-left: 3px solid #23d160;
+}
+
+/* Form layout */
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+/* Responsive form */
+@media (max-width: 768px) {
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .form-btn {
+        width: 100%;
+    }
+}
+
+/* Form with glow effect */
+.glow-form input:focus,
+.glow-form textarea:focus,
+.glow-form select:focus {
+    box-shadow: 0 0 10px var(--secondary-color);
+}
+
+/* Animated form elements */
+.animated-input {
+    position: relative;
+    margin-bottom: 25px;
+}
+
+.animated-input input,
+.animated-input textarea {
+    padding: 15px;
+    border: 1px solid var(--input-border);
+    background-color: var(--input-bg);
+    color: var(--input-text);
+    width: 100%;
+    font-size: 1rem;
+    border-radius: 5px;
+    transition: var(--transition);
+}
+
+.animated-input label {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    color: #777;
+    transition: var(--transition);
+    pointer-events: none;
+}
+
+.animated-input input:focus ~ label,
+.animated-input input:not(:placeholder-shown) ~ label,
+.animated-input textarea:focus ~ label,
+.animated-input textarea:not(:placeholder-shown) ~ label {
+    top: -10px;
+    left: 10px;
+    font-size: 0.85rem;
+    background-color: var(--input-bg);
+    padding: 0 5px;
+    color: var(--secondary-color);
+}
+
+.animated-input input:focus,
+.animated-input textarea:focus {
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 0 3px rgba(0, 159, 253, 0.2);
+}

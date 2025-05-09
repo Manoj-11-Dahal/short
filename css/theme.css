@@ -1,0 +1,386 @@
+/* Enhanced Animation and Theme Styles */
+
+/* Theme transition class */
+.theme-transition {
+    transition: background-color 0.8s ease, color 0.8s ease, border-color 0.8s ease, box-shadow 0.8s ease !important;
+}
+
+/* Enhanced Glow Effects */
+.glow-effect {
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.glow-effect::after {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    background: var(--glow-color, var(--secondary-color));
+    filter: blur(15px);
+    opacity: 0;
+    z-index: -1;
+    transition: opacity 0.3s ease, filter 0.3s ease, transform 0.3s ease;
+}
+
+.glow-effect:hover::after {
+    opacity: 0.7;
+    transform: scale(1.05);
+}
+
+.active-glow::after {
+    opacity: 0.7;
+    animation: pulse-glow 2s infinite;
+}
+
+@keyframes pulse-glow {
+    0% { opacity: 0.4; filter: blur(15px); transform: scale(1); }
+    50% { opacity: 0.7; filter: blur(20px); transform: scale(1.05); }
+    100% { opacity: 0.4; filter: blur(15px); transform: scale(1); }
+}
+
+/* Text glow effect */
+.text-glow {
+    text-shadow: 0 0 5px var(--secondary-color), 0 0 10px var(--accent-color);
+    transition: text-shadow 0.3s ease, color 0.3s ease;
+}
+
+.text-glow:hover {
+    text-shadow: 0 0 15px var(--secondary-color), 0 0 30px var(--accent-color);
+    color: var(--accent-color);
+}
+
+/* Enhanced Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInLeft {
+    from { opacity: 0; transform: translateX(-30px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeInRight {
+    from { opacity: 0; transform: translateX(30px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(0, 159, 253, 0.7); }
+    70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(0, 159, 253, 0); }
+    100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(0, 159, 253, 0); }
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+
+.fade-in {
+    animation: fadeIn 0.8s ease forwards;
+    opacity: 0;
+}
+
+.pulse {
+    animation: pulse 2s infinite;
+}
+
+.float {
+    animation: float 3s ease-in-out infinite;
+}
+
+/* Apply different animation delays to stagger animations */
+.fade-in:nth-child(1) { animation-delay: 0.1s; }
+.fade-in:nth-child(2) { animation-delay: 0.3s; }
+.fade-in:nth-child(3) { animation-delay: 0.5s; }
+.fade-in:nth-child(4) { animation-delay: 0.7s; }
+.fade-in:nth-child(5) { animation-delay: 0.9s; }
+
+/* Animation utility classes */
+.fade-in-left {
+    animation: fadeInLeft 0.8s ease forwards;
+    opacity: 0;
+}
+
+.fade-in-right {
+    animation: fadeInRight 0.8s ease forwards;
+    opacity: 0;
+}
+
+.rotate {
+    animation: rotate 8s linear infinite;
+}
+
+.shimmer {
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+}
+
+/* Button Glow Effect */
+.btn.glow-effect {
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn.glow-effect:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 7px 15px rgba(0, 159, 253, 0.4);
+}
+
+.btn.glow-effect::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    opacity: 0;
+    z-index: -1;
+    transition: opacity 0.3s ease;
+}
+
+.btn.glow-effect:hover::before {
+    opacity: 1;
+}
+
+/* Skill bar animation */
+.skill-level {
+    position: relative;
+    overflow: hidden;
+}
+
+.skill-level::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transform: translateX(-100%);
+    animation: skill-shine 2s infinite;
+}
+
+@keyframes skill-shine {
+    100% { transform: translateX(100%); }
+}
+
+/* Apply theme to body */
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+/* Theme toggle button styles */
+.theme-toggle {
+    background: transparent;
+    border: none;
+    color: var(--text-color);
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    position: relative;
+    overflow: hidden;
+}
+
+.theme-toggle:hover {
+    transform: rotate(15deg);
+    box-shadow: 0 0 15px var(--accent-color);
+}
+
+.theme-toggle::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: var(--primary-color);
+    border-radius: 50%;
+    opacity: 0;
+    transform: scale(0);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.theme-toggle:hover::before {
+    opacity: 0.2;
+    transform: scale(1);
+}
+
+/* Theme transition animation */
+.theme-transition-active * {
+    transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease !important;
+}
+
+/* Glow effects */
+.glow-effect {
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.glow-effect::after {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    background: var(--glow-color);
+    filter: blur(15px);
+    opacity: 0;
+    z-index: -1;
+    transition: opacity 0.3s ease, filter 0.3s ease, transform 0.3s ease;
+}
+
+/* Enhanced glow effects for different elements */
+.card.glow-effect::after {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+}
+
+.project-card.glow-effect::after {
+    background: linear-gradient(45deg, var(--secondary-color), var(--accent-color));
+}
+
+.social-link.glow-effect::after {
+    background: var(--accent-color);
+    filter: blur(10px);
+}
+
+.btn.glow-effect::after {
+    background: linear-gradient(90deg, var(--secondary-color), var(--accent-color));
+    filter: blur(8px);
+}
+
+.glow-effect:hover::after {
+    opacity: 0.7;
+    transform: scale(1.05);
+}
+
+/* Card hover effects */
+.card-hover {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-hover:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px var(--card-shadow);
+}
+
+/* Border glow effect */
+.border-glow {
+    position: relative;
+}
+
+.border-glow::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 2px solid transparent;
+    border-radius: inherit;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    pointer-events: none;
+}
+
+.border-glow:hover::before {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 10px var(--accent-color);
+    animation: border-pulse 2s infinite;
+}
+
+@keyframes border-pulse {
+    0% { border-color: var(--accent-color); opacity: 0.5; box-shadow: 0 0 5px var(--accent-color); }
+    50% { border-color: var(--secondary-color); opacity: 1; box-shadow: 0 0 15px var(--secondary-color); }
+    100% { border-color: var(--accent-color); opacity: 0.5; box-shadow: 0 0 5px var(--accent-color); }
+}
+
+
+.glow-effect:hover::after {
+    opacity: 0.7;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+.fade-in {
+    animation: fadeIn 0.8s ease forwards;
+    opacity: 0;
+}
+
+.pulse {
+    animation: pulse 2s infinite;
+}
+
+.float {
+    animation: float 3s ease-in-out infinite;
+}
+
+/* Apply different animation delays to stagger animations */
+.fade-in:nth-child(1) { animation-delay: 0.1s; }
+.fade-in:nth-child(2) { animation-delay: 0.3s; }
+.fade-in:nth-child(3) { animation-delay: 0.5s; }
+.fade-in:nth-child(4) { animation-delay: 0.7s; }
+.fade-in:nth-child(5) { animation-delay: 0.9s; }
+
+/* Animation utility classes */
+.fade-in-left {
+    animation: fadeInLeft 0.8s ease forwards;
+    opacity: 0;
+}
+
+.fade-in-right {
+    animation: fadeInRight 0.8s ease forwards;
+    opacity: 0;
+}
+
+.rotate {
+    animation: rotate 8s linear infinite;
+}
+
+.shimmer {
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+}

@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manoj Dahal Website</title>
+    <link rel="stylesheet" href="css/theme.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/auth.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/form-elements.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Auth0 SDK -->
+    <script src="https://cdn.auth0.com/js/auth0-spa-js/2.0/auth0-spa-js.production.js"></script>
+</head>
+<body>
+    <!-- Custom Cursor Elements -->
+    <div class="cursor"></div>
+    <div class="cursor-dot"></div>
+    
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="container">
+            <div class="logo">Portfolio</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+                    <i class="fas fa-moon"></i>
+                </button></li>
+                <li><button id="login-btn" class="auth-btn">Login</button></li>
+                <li><button id="logout-btn" class="auth-btn" style="display: none;">Logout</button></li>
+            </ul>
+            <div class="hamburger">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Home Section -->
+    <section id="home" class="section">
+        <div class="container">
+            <div class="hero-flex">
+                <div class="hero-content">
+                    <h1 class="fade-in">Welcome to My Portfolio</h1>
+                    <p class="fade-in">Web Developer & Designer</p>
+                    <a href="#contact" class="btn glow-effect fade-in">View My Work</a>
+                </div>
+                <div class="profile-image fade-in">
+                    <img src="images/profile.jpg" alt="Profile Picture">
+                </div>
+            </div>
+        </div>
+        <div id="particles-js"></div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="container">
+            <h2 class="section-title fade-in">About Me</h2>
+            <div class="about-content">
+                <div class="about-text fade-in">
+                    <p>I am a passionate web developer with expertise in creating responsive and interactive websites. With a strong foundation in HTML, CSS, JavaScript, and PHP, I build engaging digital experiences that combine aesthetics with functionality.</p>
+                    
+                    <!-- Protected content that only appears when logged in -->
+                    <div class="protected-content">
+                        <h3>For Authenticated Users Only</h3>
+                        <p>Thank you for logging in! This special content is only visible to authenticated users. This demonstrates how you can protect certain parts of your website using Auth0 authentication.</p>
+                    </div>
+                    
+                    <!-- Role-based protected content -->
+                    <div class="protected-content" data-required-role="admin">
+                        <h3>Admin Content</h3>
+                        <p>This content is only visible to users with the admin role. You can control access to different parts of your website based on user roles.</p>
+                    </div>
+                </div>
+                <div class="skills fade-in">
+                    <h3>My Skills</h3>
+                    <div class="skill">
+                        <span>HTML5</span>
+                        <div class="skill-bar">
+                            <div class="skill-level" data-level="90%"></div>
+                        </div>
+                    </div>
+                    <div class="skill">
+                        <span>CSS3</span>
+                        <div class="skill-bar">
+                            <div class="skill-level" data-level="85%"></div>
+                        </div>
+                    </div>
+                    <div class="skill">
+                        <span>JavaScript</span>
+                        <div class="skill-bar">
+                            <div class="skill-level" data-level="80%"></div>
+                        </div>
+                    </div>
+                    <div class="skill">
+                        <span>PHP/MySQL</span>
+                        <div class="skill-bar">
+                            <div class="skill-level" data-level="75%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="project" class="section">
+        <div class="container">
+            <h2 class="section-title fade-in">My Projects</h2>
+            <div class="projects-grid">
+                <!-- Project cards will be loaded dynamically from the database -->
+                <!-- Fallback static projects -->
+                <div class="project-card fade-in">
+                    <div class="project-img">
+                        <img src="images/project1.jpg" alt="E-commerce Website">
+                    </div>
+                    <div class="project-info">
+                        <h3>E-commerce Website</h3>
+                        <p>A fully responsive e-commerce platform with product filtering and secure checkout.</p>
+                        <div class="project-links">
+                            <a href="#" class="btn">View Project</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card fade-in">
+                    <div class="project-img">
+                        <img src="images/project2.jpg" alt="Portfolio Template">
+                    </div>
+                    <div class="project-info">
+                        <h3>Portfolio Template</h3>
+                        <p>A customizable portfolio template with smooth animations and responsive design.</p>
+                        <div class="project-links">
+                            <a href="#" class="btn">View Project</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card fade-in">
+                    <div class="project-img">
+                        <img src="images/project3.jpg" alt="Blog Platform">
+                    </div>
+                    <div class="project-info">
+                        <h3>Blog Platform</h3>
+                        <p>A dynamic blog platform with content management system and user authentication.</p>
+                        <div class="project-links">
+                            <a href="#" class="btn">View Project</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- User Profile Section -->
+    <section id="user-profile" class="section" style="display: none;">
+        <div class="container">
+            <h2 class="section-title">Your Profile</h2>
+            <div class="profile-container">
+                <div class="profile-image">
+                    <img id="user-picture" src="" alt="User Profile">
+                </div>
+                <div class="profile-details">
+                    <h3 id="user-name"></h3>
+                    <p id="user-email"></p>
+                    <p>Role: <span id="user-role">User</span></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <div class="container">
+            <h2 class="section-title fade-in">Contact Me</h2>
+            <div class="contact-content">
+                <div class="contact-info fade-in">
+                    <h3>Get In Touch</h3>
+                    <p>Feel free to reach out for collaborations or just a friendly hello!</p>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>manojdahal191@gmail.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <fa-phone>+977 9846216772</fa-phone>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Kathmandu-31,Nepal 44600</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form fade-in">
+                    <form id="contactForm" action="php/contact.php" method="POST">
+                        <div class="form-group">
+                            <input type="text" id="name" name="name" required>
+                            <label for="name">Your Name</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email" name="email" required>
+                            <label for="email">Your Email</label>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="message" name="message" required></textarea>
+                            <label for="message">Your Message</label>
+                        </div>
+                        <button type="submit" class="btn glow-effect">Send Message</button>
+                        <div id="formStatus"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h2>Portfolio</h2>
+                    <p>Creating digital experiences that make a difference.</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="projects.html">Projects</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h3>Connect With Me</h3>
+                    <div class="social-icons">
+                        <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Manoj Dahal. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Project Modal -->
+    <div id="projectModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div id="modalContent"></div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/protected-content.js"></script>
+    <script src="js/theme.js"></script>
+</body>
+</html>
